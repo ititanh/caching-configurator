@@ -10,13 +10,11 @@ if [[ -n "$biggest_number" ]]; then
     # Increment the number
     next_number=$((biggest_number + 1))
 
-    # Delete the last line of the file
-    sed -i '$ s/}$//' "$file"
-
     # Write the updated line to the file followed by }
-    echo "$backend$next_number" >> "$file"
-    echo "}" >> "$file"
-    echo "Added backend$next_number to the file and closed the block."
+    sed -i "\$i$backend$next_number" "$file"
+    sed -i '$ a\'"$backend$next_number"'\
+}' "$file"
+    echo "Added backend$next_number to the file before the last '}'."
 else
     echo "No backend found in the file. Adding backend1."
     echo "$backend1" >> "$file"

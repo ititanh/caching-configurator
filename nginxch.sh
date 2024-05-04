@@ -2,6 +2,7 @@
 
 file="/etc/nginx/stream-proxy.conf"
 backend="backend"
+backend1="backend1"
 
 # Find the biggest backend number in the file
 biggest_number=$(grep -oP '(?<=backend)\d+' "$file" | sort -nr | head -n 1)
@@ -16,8 +17,8 @@ if [[ -n "$biggest_number" ]]; then
 }' "$file"
     echo "Added backend$next_number to the file before the last '}'."
 else
-    sed -i "\$i$backend"1 "$file"
-    sed -i '$ a\'"$backend"1'\
+    sed -i "\$i$backend1" "$file"
+    sed -i '$ a\'"$backend1"'\
 }' "$file"
     echo "No backend found in the file. Adding backend1."
 fi

@@ -17,6 +17,7 @@ if [[ -n "$biggest_number" ]]; then
     echo "Added backend$next_number to the file before the last '}'."
 else
     echo "No backend found in the file. Adding backend1."
-    echo "$backend1" >> "$file"
-    echo "}" >> "$file"
+    sed -i "\backend1" "$file"
+    sed -i '$ a\'"backend1"'\
+}' "$file"
 fi

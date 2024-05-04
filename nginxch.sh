@@ -11,7 +11,7 @@ if [[ -n "$biggest_number" ]]; then
     next_number=$((biggest_number + 1))
 
     # Delete the last line of the file
-    sed -i '$ d' "$file"
+    sed -i '$ s/}$//' "$file"
 
     # Write the updated line to the file followed by }
     echo "$backend$next_number" >> "$file"
